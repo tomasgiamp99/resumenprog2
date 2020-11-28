@@ -301,7 +301,7 @@ let controller = {
 app.use(express.static(__dirname + '/public')); //le estamos dando acceso a Express a todo lo que se encuentre en la carpeta 'public' (por convención se usa la carpeta 'public)
 
 //todo Requerir un RECURSO ESTÁTICO
-// Para acceder a alguno de estos recursos desde nuestros archivos solo ahce falta aclarar la RUTA hacia nuestro recurso
+// Para acceder a alguno de estos recursos desde nuestros archivos solo hace falta aclarar la RUTA hacia nuestro recurso
 //& Nota: siempre comenzamos la ruta con '/'
 
 // Pasos: 

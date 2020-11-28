@@ -1,0 +1,125 @@
+BASES DE DATOS
+// La información se organiza en tablas.
+// TODAS las tablas tienen una columna 'id' que corresponde a la *clave primaria*
+
+// Los ID son siempre positivos y autoincrementativos. No pueden haber 2 iguales
+
+// Para vincluar dos tablas -> usamos la FK 
+
+*Tipos de relaciones*
+1. Uno a Uno
+2. Uno a Muchos -> Clave Foranea (FK Forange Key)
+3. Muchos a Muchos
+
+Cuando tengo una relación de muchos con muchos -> debo crear una tabla intermedia relacionando ambas claves (PK)
+
+________________________________________
+1. SQL
+
+1.1 Crear una tabla
+
+Ejemplo:
+CREATE TABLE movies (
+    id INT UNSIGNED PRIMARY KEY AUTO INCREMENT,
+    title VARCHAR(500) NOT NULL,
+    raiting DECIMAL (3,1) UNSIGNED NOT NULL,
+    awards INT UNSIGNED DEFAULT 0,
+    release_date DATE NOT NULL,
+    length INT UNSIGNED NOT NULL
+);
+
+
+1.2 Tipos de DATOS
+    1) Numéricos (sin decimales)
+        - TINYINT: -128 a 128, 0 a 255
+        - SMALLINT: -32789 a 32767, 0 a 65535
+        - MEDIUMINT: -8388608 a 8388607, 0 a 16777215
+        - INT: 
+     Numéricos (con decimales)
+    2) Booleans: TRUE || FALSE
+    3) TEXT:
+        - CHAR (num): el nro entre paréntesis va a indicar la *cantidad exacta de caracteres.
+        - VARCHAR(num): el nro entre paréntesis indica la cantidad máxima de caracteres.
+        - TEXT: determina un dato de tipo texto sin límite de caracteres. Se suele usar para post de blog, por ejemplo.
+    4) Fechas:
+        - DATE: YYYY-MM-DD
+        - TIME: HH:MM:SS
+        - DATE & TIME
+
+1.3 CONSTRAUNTS
+    - UNIQUE KEYS: una unique key es una restricción que solo permite valores únicos para uno (o múltiples) campos.
+    - NULL / NOTNULL: NULL significa que el valor para ese campo no existe o no se conoce. NULL no es vacío '' (blank) ni cero (0)
+    - DEFAULT: se usa para definir un valor por defecto para una columna. Este valor se le va a agregar a cada registro nuevo siempre y Cuando no se especifique otro valor que lo sobreescriba.
+    - AUTO_INCREMENT: genera un unico id (COMPLETAR)
+
+1.4 MODIFICAR UNA TABLA
+    1) DROP TABLE
+    2) ALTER TABLE: me permite alterar la tabla ya existente. Opera con 3 comandos:
+        - ADD: agregar una columna.
+        - MODIFY: modificar una columna.
+        - DROP: borrar una columna.
+
+
+    1) INSERT: 
+
+        INSERT INTO table_name (columna_1, columna_2, columna_3, ... )
+        VALUES (valor_1, valor2, valor3, ...)
+
+Ejemplo:
+        INSERT INTO usuarios (id, nombre, apellido)
+        VALUES (DEFAULT, 'Diego', 'Díaz')
+
+        INSERT INTO usuarios
+        VALUES (DEFAULT, 'Diego', 'Díaz')
+
+
+    2) DELETE: nos permite borrar información de una tabla. Es importante utilizar SIEMPRE el WHERE en la sentencia para agregar la condición de cuáles son las filas que queremos eliminar -> si no ponemos WHERE borramos TODA LA TABLA.
+
+        DELETE FROM nombre_tabla WHERE condicion;
+        DELETE FROM usuarios WHERE usuarios_id
+    
+    3) UPDATE: modificará los registros existentes de una tabla. También es importante no olvidar el WHERE.
+
+        UPDATE nombre_tabla
+        SET columna_1 = valor1, columna_2 = valor2, ...
+        WHERE condition
+
+___________________________________________
+
+--Clase 14/09--
+Crear clave foránea: 
+FOREIGN KEY (campo de tabla actual donde queremos crear el dato) references users(campo de la otra tabla que queremos referenciar)
+
+EJ: FOREIGN KEY (user_id) references users(id)
+
+HACER CONSULTAS A LA BASE DE DATOS:
+EJ: 
+    SELECT title, rating, awards, length 
+    FROM MOVIES 
+    ORDER BY rating DESC
+    LIMIT 5
+    OFFSET 2 --OFFSET n° saltea las n° primeros resultados.
+
+EJ:
+    SELECT title, rating, awards, length 
+    FROM MOVIES 
+    WHERE rating BETWEEN 9 AND 10 --Agrego el Between para indicar DÓNDE
+    ORDER BY rating DESC
+    LIMIT 5
+    OFFSET 2
+
+WHERE xxx BETWEEN yy AND zz
+WHERE xxx LIKE --Me permite identificar
+
+wirekats: %xxx% --No importa que hay antes o después
+
+CONSULTAS CRUZADAS:
+EJ:
+    SELECT title, genre_id, name 
+    FROM movies, genres
+    WHERE genre_id = genre.id; --Debo filtrar para que me devuelva la COINCIDENCIA (JOINS)
+
+JOINS: son coincidencias (intersecciones)
+    - Para obtener la intersección usamos INNER JOIN tabla ON columna1 = columna2
+
+
