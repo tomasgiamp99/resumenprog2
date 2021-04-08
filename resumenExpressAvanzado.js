@@ -100,12 +100,12 @@ db.sequelize.query('SELECT * FROM usuarios')
     });
 
 //Todo 2.3 Modelos
-// En los patrones de diseño MVC (Modelo Vista Controlador), los modelos contienen únicamente los datos puros de aplicación -> no contiene lógica que describa cómo pueden representarse lso datos a un usario -> este puede accedera a la capa de almacenamiento de datos. Lo ideal es que el modelo sea independiente del sistema de almacenamiento.
+// En los patrones de diseño MVC (Modelo Vista Controlador), los modelos contienen únicamente los datos puros de aplicación -> no contiene lógica que describa cómo pueden representarse los datos a un usario -> este puede accedera a la capa de almacenamiento de datos. Lo ideal es que el modelo sea independiente del sistema de almacenamiento.
 
 // Un modelo es la representación de nuestra tabla en código -> con esto obtenemos recursos que nos permiten realizar consultas e intereacciones con la base de datos de manera simplificando usando (en este caso) sequelize.
 
 //* CREAR UN MODELO
-//& NOTA: Los modelos son archivos .js y deben ser creados con esa extensión. Además, los nombres de los modelos deben estar escritos en UpperCamelCase y en singular.b 
+//& NOTA: Los modelos son archivos .js y deben ser creados con esa extensión. Además, los nombres de los modelos deben estar escritos en UpperCamelCase y en singular. 
 
 // Un modelo es una función que definimos y luego exportamos con module.export.
 
